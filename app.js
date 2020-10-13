@@ -5,7 +5,7 @@ app.get('/api/convert', (req, res) => {
     var input = req.query.input;
     myArr = input.split(/(\d+)/);
     var num = myArr[1];
-    var unit = myArr[0];
+    var unit = myArr[2];
 
     res.json({
         num: num,
