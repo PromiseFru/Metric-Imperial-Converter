@@ -2,10 +2,18 @@ const express = require('express');
 const app = express();
 
 app.get('/api/convert', (req, res) => {
-    var input = req.params.input;
-    var myArr = input.split(/(\d+)/);
-    var num = myArr[0];
-    var unit = myArr[1];
+    function stringSplit(str){
+        var myArr = [];
+        var split = str.split(/(\d+)/);
+        split.forEach(ele => {
+            myArr.push(ele)
+        })
+        return myArr
+    }
+    var input = req.query.input;
+    testArr = stringSplit(input);
+    var num = testArr[1];
+    var unit = testArr[2];
 
     res.json({
         num: num,
