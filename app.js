@@ -3,25 +3,14 @@ const app = express();
 
 app.get('/api/convert', (req, res) => {
     var input = req.query.input;
-    myArr = input.split(/(\d+\.\d+|\d+)/);
-    var num = function(){
-        if(typeof Number(myArr[1]) == 'number' && !isNaN(Number(myArr[1])) && isFinite(Number(myArr[1]))){
-            return myArr[1];
-        }else{
-            return "invalid number";
-        }
-    }
-    var unit = function(){
-        if(typeof myArr[2] == 'string' || myArr[2] instanceof String){
-            return myArr[2];
-        }else{
-            return "invalid unit";
-        }
-    }
+    //myArr = input.split(/(\d+\.\d+|\d+)/);
+    firstCharIndex = input.match('[a-zA-Z]').index;
+    var num = Number(input.slice(0, firstCharIndex));
+    var unit = input.slice(firstCharIndex);
 
     res.json({
-        num: num(),
-        unit: unit()
+        num: num,
+        unit: unit
     })
 })
 
