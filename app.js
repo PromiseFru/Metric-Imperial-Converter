@@ -33,6 +33,26 @@ app.get('/api/convert', (req, res) => {
             returnUnit = 'gal';
             break;
         }
+        case 'lbs': {
+            returnNum = initNum * 0.453592;
+            returnUnit = 'kg';
+            break;
+        }
+        case 'kg': {
+            returnNum = initNum / 0.453592;
+            returnUnit = 'lbs';
+            break;
+        }
+        case 'mi': {
+            returnNum = initNum * 1.60934;
+            returnUnit = 'km';
+            break;
+        }
+        case 'km': {
+            returnNum = initNum / 1.60934;
+            returnUnit = 'mi';
+            break;
+        }
     }
     res.json({
         num: initNum,
