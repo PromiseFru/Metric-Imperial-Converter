@@ -8,10 +8,15 @@ app.get('/api/convert', (req, res) => {
     var num = eval(input.slice(0, firstCharIndex));
     var unit = input.slice(firstCharIndex);
 
-    // 
+    // initNum 
+    if(typeof num == 'undefined'){
+        initNum = 1;
+    }else{
+        initNum = num;
+    }
 
     res.json({
-        num: num,
+        num: initNum,
         unit: unit
     })
 })
