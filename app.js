@@ -19,12 +19,26 @@ app.get('/api/convert', (req, res) => {
     if(unit == 'gal' || unit == 'L' || unit == 'lbs' || unit == 'kg' || unit == 'mi' || unit == 'km'){
         initUnit = unit;
     }else{
-        throw 'invalid unit'
+        return 'invalid unit'
     }
 
+    switch(initUnit){
+        case 'gal': {
+            returnNum = initNum * 3.78541;
+            returnUnit = 'L';
+            break;
+        }
+        case 'L': {
+            returnNum = initNum / 3.78541;
+            returnUnit = 'gal';
+            break;
+        }
+    }
     res.json({
         num: initNum,
-        unit: unit
+        unit: unit,
+        returnNum: returnNum,
+        returnUnit: returnUnit
     })
 })
 
