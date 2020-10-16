@@ -15,6 +15,13 @@ app.get('/api/convert', (req, res) => {
         initNum = num;
     }
 
+    // initUnit
+    if(unit == 'gal' || unit == 'L' || unit == 'lbs' || unit == 'kg' || unit == 'mi' || unit == 'km'){
+        initUnit = unit;
+    }else{
+        throw 'invalid unit'
+    }
+
     res.json({
         num: initNum,
         unit: unit
