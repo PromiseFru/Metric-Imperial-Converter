@@ -25,43 +25,49 @@ app.get('/api/convert', (req, res) => {
     switch(tempUnit){
         case 'gal': {
             initUnit = 'gallons';
-            returnNum = initNum * 3.78541;
+            returnNum = tempNum * 3.78541;
             returnUnit = 'liters';
+            rawUnit = 'L';
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'L': {
             initUnit = 'liters';
-            returnNum = initNum / 3.78541;
+            returnNum = tempNum / 3.78541;
             returnUnit = 'gallons';
+            rawUnit = 'gal';
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'lbs': {
             initUnit = 'pounds';
-            returnNum = initNum * 0.453592;
+            returnNum = tempNum * 0.453592;
             returnUnit = 'kilograms';
+            rawUnit = 'kg';
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'kg': {
             initUnit = 'kilograms';
-            returnNum = initNum / 0.453592;
+            returnNum = tempNum / 0.453592;
             returnUnit = 'pounds';
+            rawUnit = 'lbs';
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'mi': {
             initUnit = 'miles';
-            returnNum = initNum * 1.60934;
+            returnNum = tempNum * 1.60934;
             returnUnit = 'kilometers';
+            rawUnit = 'km';
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'km': {
             initUnit = 'kilometers';
-            returnNum = initNum / 1.60934;
+            returnNum = tempNum / 1.60934;
             returnUnit = 'miles';
+            rawUnit = 'mi';
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
@@ -73,10 +79,10 @@ app.get('/api/convert', (req, res) => {
         }
     }
     res.json({
-        initNum: initNum,
-        initUnit: unit,
+        initNum: tempNum,
+        initUnit: tempUnit,
         returnNum: returnNum,
-        returnUnit: returnUnit,
+        returnUnit: rawUnit,
         string: string
     })
 })
