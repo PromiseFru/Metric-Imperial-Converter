@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.get('/api/convert', (req, res) => {
+app.get('/api/convert', (req, res, next) => {
     var input = req.query.input;
 
     firstCharIndex = input.match('[a-zA-Z]').index;
@@ -19,7 +19,7 @@ app.get('/api/convert', (req, res) => {
     if(unit == 'gal' || unit == 'L' || unit == 'lbs' || unit == 'kg' || unit == 'mi' || unit == 'km'){
         tempUnit = unit;
     }else{
-        return 'invalid unit'
+        next(new Error('invalid unit'));
     }
 
     switch(tempUnit){
@@ -71,12 +71,6 @@ app.get('/api/convert', (req, res) => {
             string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
-        default: {
-            res.json({
-                errro: 'invalid unit'
-            })
-            break;
-        }
     }
     res.json({
         initNum: tempNum,
@@ -84,6 +78,12 @@ app.get('/api/convert', (req, res) => {
         returnNum: returnNum,
         returnUnit: rawUnit,
         string: string
+    })
+})
+
+app.use((err, req, res, next) => {
+    res.json({
+        error: err
     })
 })
 
