@@ -26,31 +26,37 @@ app.get('/api/convert', (req, res) => {
         case 'gal': {
             returnNum = initNum * 3.78541;
             returnUnit = 'L';
+            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'L': {
             returnNum = initNum / 3.78541;
             returnUnit = 'gal';
+            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'lbs': {
             returnNum = initNum * 0.453592;
             returnUnit = 'kg';
+            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'kg': {
             returnNum = initNum / 0.453592;
             returnUnit = 'lbs';
+            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'mi': {
             returnNum = initNum * 1.60934;
             returnUnit = 'km';
+            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'km': {
             returnNum = initNum / 1.60934;
             returnUnit = 'mi';
+            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         default: {
@@ -64,7 +70,8 @@ app.get('/api/convert', (req, res) => {
         num: initNum,
         unit: unit,
         returnNum: returnNum,
-        returnUnit: returnUnit
+        returnUnit: returnUnit,
+        string: string
     })
 })
 
