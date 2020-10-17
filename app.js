@@ -24,41 +24,45 @@ app.get('/api/convert', (req, res) => {
 
     switch(tempUnit){
         case 'gal': {
-            initUnit = 'gallons',
+            initUnit = 'gallons';
             returnNum = initNum * 3.78541;
             returnUnit = 'liters';
-            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'L': {
-            initUnit = 'liters',
+            initUnit = 'liters';
             returnNum = initNum / 3.78541;
             returnUnit = 'gallons';
-            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'lbs': {
+            initUnit = 'pounds';
             returnNum = initNum * 0.453592;
-            returnUnit = 'kg';
-            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            returnUnit = 'kilograms';
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'kg': {
+            initUnit = 'kilograms';
             returnNum = initNum / 0.453592;
-            returnUnit = 'lbs';
-            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            returnUnit = 'pounds';
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'mi': {
+            initUnit = 'miles';
             returnNum = initNum * 1.60934;
-            returnUnit = 'km';
-            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            returnUnit = 'kilometers';
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         case 'km': {
+            initUnit = 'kilometers';
             returnNum = initNum / 1.60934;
-            returnUnit = 'mi';
-            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            returnUnit = 'miles';
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`;
             break;
         }
         default: {
