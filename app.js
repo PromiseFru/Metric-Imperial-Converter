@@ -53,6 +53,12 @@ app.get('/api/convert', (req, res) => {
             returnUnit = 'mi';
             break;
         }
+        default: {
+            res.json({
+                errro: 'invalid unit'
+            })
+            break;
+        }
     }
     res.json({
         num: initNum,
