@@ -10,29 +10,31 @@ app.get('/api/convert', (req, res) => {
 
     // initNum 
     if(typeof num == 'undefined'){
-        initNum = 1;
+        tempNum = 1;
     }else{
-        initNum = num;
+        tempNum = num;
     }
 
     // initUnit
     if(unit == 'gal' || unit == 'L' || unit == 'lbs' || unit == 'kg' || unit == 'mi' || unit == 'km'){
-        initUnit = unit;
+        tempUnit = unit;
     }else{
         return 'invalid unit'
     }
 
-    switch(initUnit){
+    switch(tempUnit){
         case 'gal': {
+            initUnit = 'gallons',
             returnNum = initNum * 3.78541;
-            returnUnit = 'L';
-            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            returnUnit = 'liters';
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'L': {
+            initUnit = 'liters',
             returnNum = initNum / 3.78541;
-            returnUnit = 'gal';
-            string = `${initNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
+            returnUnit = 'gallons';
+            string = `${tempNum} ${initUnit} converts to ${returnNum.toFixed(5)} ${returnUnit}`
             break;
         }
         case 'lbs': {
@@ -67,8 +69,8 @@ app.get('/api/convert', (req, res) => {
         }
     }
     res.json({
-        num: initNum,
-        unit: unit,
+        initNum: initNum,
+        initUnit: unit,
         returnNum: returnNum,
         returnUnit: returnUnit,
         string: string
